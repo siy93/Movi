@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Movi</title>
+
+	<meta name="description" content="Heera HTML5 Template by Jewel Theme" >
+
+	<meta name="author" content="Jewel Theme">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+	<!-- Bootstrap  -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- icon fonts font Awesome -->
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Import Magnific Pop Up Styles -->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+	<!-- Import Custom Styles -->
+	<link href="assets/css/style.css" rel="stylesheet">
+
+	<!-- Import Animate Styles -->
+	<link href="assets/css/animate.min.css" rel="stylesheet">
+
+	<!-- Import owl.carousel Styles -->
+	<link href="assets/css/owl.carousel.css" rel="stylesheet">
+
+	<!-- Import Custom Responsive Styles -->
+	<link href="assets/css/responsive.css" rel="stylesheet">
+
+
+	<link href="http://vjs.zencdn.net/5-unsafe/video-js.css" rel="stylesheet">
+	<script src="http://vjs.zencdn.net/5-unsafe/video.js"></script>
+
+	<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  		<![endif]-->
+
+  	</head>
+  	<body class="header-fixed-top">
+
+  		<div id="page-top" class="page-top"></div><!-- /.page-top -->
+
+  		<section id="site-banner" class="site-banner text-center">
+  			<div class="container">
+  				<div class="site-logo">
+  					<a href="/"><img src="images/logo-movi.png"> </a>
+  				</div><!-- /.site-logo -->
+                <div class="section-login">
+                    <div class="btn-loginandsignup">
+											<% if (message) { %>
+									      <%= message %> 님  안녕하세요!
+												<a href="/logout" class="btn-default">logout</a>
+									    <% }else { %>
+											  <a href="/login" class="btn-default">login</a>
+											  <a href="/signup" class="btn-default">signup</a>
+											<% } %>
+                  	</div>
+                </div>
+  			</div><!-- /.container -->
+  		</section><!-- /#site-banner -->
+
+
+
+  		<header id="main-menu" class="main-menu">
+  			<div class="container">
+  				<div class="row">
+  					<div class="col-sm-7">
+  						<div class="navbar-header">
+  							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+  								<i class="fa fa-bars"></i>
+  							</button>
+                            <div class="menu-logo">
+                              <a href="./"><img src="images/logo-movi-small.png" alt="menu Logo"></a>
+                            </div><!-- /.menu-logo -->
+                        </div>
+                        <nav id="menu" class="menu collapse navbar-collapse">
+                            <ul id="headernavigation" class="menu-list nav navbar-nav">
+                                <li><a href="/">나의 잠버릇</a></li>
+                                <li><a href="graph.html">어떻게 잤나?</a></li>
+                                <li><a href="#services">훔쳐보기</a></li>
+                            </ul><!-- /.menu-list -->
+                        </nav><!-- /.menu-list -->
+                    </div>
+
+          <div class="col-sm-5">
+            <div class="menu-search pull-right">
+             <form role="search" class="search-form" action="#" method="get">
+              <input class="search-field" type="text" name="s" id="s" placeholder="날짜 검색하기" required>
+              <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+            </form><!-- /.search-form -->
+          </div><!-- /.menu-search -->
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </header><!-- /#main-menu -->
+
+
+<div class="container">
+    <div class="section-title">
+        <h2 class="title">나의 잠버릇</h2>
+    </div>
+    <div class="col-md-12">
+        <div class="today-video">
+					<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
+						<source src="http://d1wkhxhl0qw8m2.cloudfront.net/cheerup.mp4" type='video/mp4' />
+					</video>
+        </div>
+    </div>
+    <div class="section-movie">
+        <div class="row">
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-28
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie01.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-27
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie02.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-26
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie03.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-25
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie04.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-24
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie05.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-23
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie06.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-22
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie07.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-21
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie08.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 box">
+                <div class="inner">
+                    <span class="date">
+                        2016-06-20
+                    </span>
+                    <a href="/" class="image">
+                        <img src="images/movie09.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-pagination">
+        <ul class="pagination">
+            <li><a href="#">이전</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">다음</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<footer>
+
+  <div id="footer-bottom" class="footer-bottom text-center">
+    <div class="container">
+      <div id="copyright" class="copyright">
+        &copy; <a href="/">Movi</a> 2016 All rights reserved &amp; Designed by <a href="/">Movi Team</a>
+      </div><!-- /#copyright -->
+    </div>
+  </div><!-- /#footer-bottom -->
+</footer>
+
+
+
+<div id="scroll-to-top" class="scroll-to-top">
+  <span>
+    <i class="fa fa-chevron-up"></i>
+  </span>
+</div><!-- /#scroll-to-top -->
+
+
+
+<!-- Include modernizr-2.8.3.min.js -->
+<script src="assets/js/modernizr-2.8.3.min.js"></script>
+
+<!-- Include jquery.min.js plugin -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Include magnific-popup.min.js -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+<!-- Google Maps Script -->
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+<!-- Gmap3.js For Static Maps -->
+<script src="assets/js/gmap3.js"></script>
+
+<!-- Javascript Plugins  -->
+<script src="assets/js/plugins.js"></script>
+
+<!-- Custom Functions  -->
+<script src="assets/js/functions.js"></script>
+
+<script src="assets/js/wow.min.js"></script>
+
+<script type="text/javascript" src="assets/js/jquery.ajaxchimp.min.js"></script>
+
+<script type="text/javascript">
+  // Once the video is ready
+  _V_("example_video_1").ready(function(){
+
+    var myPlayer = this;    // Store the video object
+    var aspectRatio = 9/16; // Make up an aspect ratio
+
+    function resizeVideoJS(){
+      // Get the parent element's actual width
+      var width = document.getElementById(myPlayer.id).parentElement.offsetWidth;
+      // Set width to fill parent element, Set height
+      myPlayer.width(width).height( width * aspectRatio );
+    }
+
+    resizeVideoJS(); // Initialize the function
+    window.onresize = resizeVideoJS; // Call the function on resize
+  });
+</script>
+
+<!-- Compiled and minified JavaScript -->
+
+
+</body>
+</html>
