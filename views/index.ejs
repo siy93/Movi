@@ -109,109 +109,23 @@
     </div>
     <div class="col-md-12">
         <div class="today-video">
-					<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
-						<source src="http://d1wkhxhl0qw8m2.cloudfront.net/cheerup.mp4" type='video/mp4' />
+					<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" poster="http://d1wkhxhl0qw8m2.cloudfront.net/image/1.png" data-setup="{}">
+						<source src="http://d1wkhxhl0qw8m2.cloudfront.net/video/cheerup.mp4" type='video/mp4' />
 					</video>
         </div>
+				<span>""</span>
     </div>
-    <div class="section-movie">
-        <div class="row">
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-28
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie01.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-27
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie02.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-26
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie03.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-25
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie04.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-24
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie05.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-23
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie06.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-22
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie07.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-21
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie08.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-20
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie09.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="section-movie"><% for(var i=0; i< 3 ; i++) {%>
+					<div class = "row">
+						<% for(var j=0; j< 3 ; j++) {%>
+							<div class="col-md-4 box">
+								<div class = inner>
+									<img src =http://d1wkhxhl0qw8m2.cloudfront.net/image/<%= 1+j+i*3 %>.png>
+								</div>
+						</div><% } %>
+					</div>
+			<% } %>
+	</div>
     <div class="section-pagination">
         <ul class="pagination">
             <li><a href="#">이전</a></li>
