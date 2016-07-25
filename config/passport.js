@@ -12,7 +12,7 @@ var server           = OrientDB({
   username:'root',
   password:'1234'
 });
-var db = server.use('movi');
+var db = server.use('song');
 
 
 //expose this function to our app using module.exports

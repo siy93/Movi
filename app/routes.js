@@ -1,5 +1,29 @@
 //app/routes/js
 
+//AWS Setup
+var AWS = require('aws-sdk');
+AWS.config.region = 'ap-northeast-2';
+var s3 = new AWS.S3();
+var totalvideo = 0,
+    pageSize = 9,
+    currentPage = 1,
+    images = [],
+    imagesArrays= [],
+    imagesList = [];
+console.log(s3.listObjects(
+  {Bucket: 'movistorage',
+  Prefix: 'image/'
+}).on('success', function handlePage(response) {
+    for(var name in response.data.Contents){
+        totalvideo++;
+    }
+    if (response.hasNextPage()) {
+        response.nextPage().on('success', handlePage).send();
+    }
+    var pageCount = parseInt(totalvideo/pageSize)+1
+}).send().domain);
+
+//DataBase Setup
 var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
 var OrientDB         = require('orientjs');
@@ -9,7 +33,7 @@ var server           = OrientDB({
   username:'root',
   password:'1234'
 });
-var db = server.use('movi');
+var db = server.use('song');
 
 module.exports = function(app, passport) {
 
@@ -18,10 +42,39 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/', function(req, res) {
       if(req.user && req.user.username) {
-        res.render('index.ejs', {message: req.user.username}); // load the index.ejs file
+        res.render('index.ejs', {
+          message: req.user.username ,
+          totalvideo :totalvideo,
+          pageSize : pageSize,
+          images: imagesList,
+          pageCount : pageCount,
+          currentPage : currentPage
+        }); // load the index.ejs file
       }else{
-        res.render('index.ejs', {message: null});
+        res.render('index.ejs', {
+          message: null ,
+          totalvideo :totalvideo,
+          pageSize : pageSize,
+          images: imagesList,
+          pageCount : pageCount,
+          currentPage : currentPage
+        });
       }
+
+
+      if (typeof req.query.page !== 'undefined') {
+          currentPage = +req.query.page;
+      }
+      for (var i = 1; i < totalvideo; i++) {
+          images.push({num:  i});
+      }
+
+      while (images.length > 0) {
+          imagesArrays.push(images.splice(0, pageSize));
+      }
+
+      imagesList = imagesArrays[+currentPage - 1];
+      console.log(totalvideo,pageSize,pageCount,currentPage);
     });
 
     // =====================================
