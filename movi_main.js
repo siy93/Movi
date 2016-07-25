@@ -20,7 +20,7 @@ var server           = OrientDB({
 });
 
 //configuration=================================================================
-var db = server.use('song');
+var db = server.use('movi');
 
 //set up express application
 app.use(bodyParser.urlencoded({extended:false}));
@@ -32,7 +32,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store:new OrientoStore({
-    server:"host=localhost&port=2424&username=root&password=1234&db=song"
+    server:"host=localhost&port=2424&username=root&password=1234&db=movi"
   })
 }));
 

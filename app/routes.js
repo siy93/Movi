@@ -10,18 +10,14 @@ var totalvideo = 0,
     images = [],
     imagesArrays= [],
     imagesList = [];
-console.log(s3.listObjects(
+s3.listObjects(
   {Bucket: 'movistorage',
   Prefix: 'image/'
 }).on('success', function handlePage(response) {
     for(var name in response.data.Contents){
         totalvideo++;
     }
-    if (response.hasNextPage()) {
-        response.nextPage().on('success', handlePage).send();
-    }
-    var pageCount = parseInt(totalvideo/pageSize)+1
-}).send().domain);
+}).send();
 
 //DataBase Setup
 var bkfd2Password = require("pbkdf2-password");
@@ -33,34 +29,15 @@ var server           = OrientDB({
   username:'root',
   password:'1234'
 });
-var db = server.use('song');
+var db = server.use('movi');
 
 module.exports = function(app, passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-      if(req.user && req.user.username) {
-        res.render('index.ejs', {
-          message: req.user.username ,
-          totalvideo :totalvideo,
-          pageSize : pageSize,
-          images: imagesList,
-          pageCount : pageCount,
-          currentPage : currentPage
-        }); // load the index.ejs file
-      }else{
-        res.render('index.ejs', {
-          message: null ,
-          totalvideo :totalvideo,
-          pageSize : pageSize,
-          images: imagesList,
-          pageCount : pageCount,
-          currentPage : currentPage
-        });
-      }
-
+    app.get('/',function(req,res){
+      pageCount = parseInt(totalvideo/pageSize) + 1;
 
       if (typeof req.query.page !== 'undefined') {
           currentPage = +req.query.page;
@@ -74,8 +51,30 @@ module.exports = function(app, passport) {
       }
 
       imagesList = imagesArrays[+currentPage - 1];
+
       console.log(totalvideo,pageSize,pageCount,currentPage);
+      if(req.user && req.user.username) {
+        res.render('index.ejs', {
+          message: req.user.username ,
+          totalvideo :totalvideo,
+          pageSize : pageSize,
+          images: imagesList,
+          pageCount : pageCount,
+          currentPage : currentPage
+        }); // load the index.ejs file
+      }else{
+        console.log(currentPage);
+        res.render('index.ejs', {
+          message: null ,
+          totalvideo :totalvideo,
+          pageSize : pageSize,
+          images: imagesList,
+          pageCount : pageCount,
+          currentPage : currentPage
+        });
+      }
     });
+
 
     // =====================================
     // LOGIN ===============================

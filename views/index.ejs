@@ -121,8 +121,11 @@
 						<% for(var j=0; j< 3 ; j++) {%>
 							<div class="col-md-4 box">
 								<div class = inner>
-									<% if (totalvideo > 9*(currentPage)+1+j+i*3 )%>
+									<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
 									<img src =http://d1wkhxhl0qw8m2.cloudfront.net/image/<%= 9*(currentPage-1)+1+j+i*3 %>.png>
+									<% } else { %>
+									<span>""</span>
+									<% } %>
 								</div>
 						</div><% } %>
 					</div>
@@ -227,9 +230,7 @@
     window.onresize = resizeVideoJS; // Call the function on resize
   });
 </script>
-
 <!-- Compiled and minified JavaScript -->
-
 
 </body>
 </html>

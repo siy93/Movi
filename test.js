@@ -6,12 +6,22 @@ var params = {
   Bucket: 'movistorage',
   Prefix: 'image/'
 };
-function foo(callback){
-  s3.listObjectsV2(params, function(err, data) {
-  if (err) console.log(err, err.stack); // an error occurred
-  callback(data.KeyCount);
-  });
-}
-foo(function(KeyCount){
-  count = KeyCount;
-});
+
+  s3.listObjectsV2(params, setTimeout(function(err, data) {
+    if (err) console.log(err, err.stack); // an error occurred
+    else  data.KeyCount;
+  }
+
+
+
+var getUserName = function( callback ) {
+    // get the username somehow
+    var username = "Foo";
+    callback( username );
+};
+
+var saveUserInDatabase = function( username ) {
+    console.log("User: " + username + " is saved successfully.")
+};
+
+getUserName( saveUserInDatabase );
