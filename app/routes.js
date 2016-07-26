@@ -52,7 +52,7 @@ module.exports = function(app, passport) {
 
       imagesList = imagesArrays[+currentPage - 1];
 
-      console.log(totalvideo,pageSize,pageCount,currentPage);
+
       if(req.user && req.user.username) {
         res.render('index.ejs', {
           message: req.user.username ,
@@ -63,7 +63,6 @@ module.exports = function(app, passport) {
           currentPage : currentPage
         }); // load the index.ejs file
       }else{
-        console.log(currentPage);
         res.render('index.ejs', {
           message: null ,
           totalvideo :totalvideo,
@@ -74,6 +73,10 @@ module.exports = function(app, passport) {
         });
       }
     });
+
+    app.get('/graph.ejs',function(req,res){
+      res.render('graph.ejs')
+    })
 
 
     // =====================================
