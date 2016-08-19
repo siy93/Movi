@@ -9,18 +9,19 @@ var cookieParser     = require('cookie-parser');
 var bodyParser       = require('body-parser');
 var passport         = require('passport');
 var flash            = require('connect-flash');
-var OrientoStore     = require('connect-oriento')(session);
-var OrientDB         = require('orientjs');
+var MySQLStore       = require('express-mysql-session')(session);
+var mysql            = require('mysql');
 var port             = process.env.PORT || 3000;
-var server           = OrientDB({
+var server           = mysql.createConnection({
   host:'localhost',
-  port:2424,
-  username:'root',
-  password:'1234'
+  user:'root',
+  password:'movi1234',
+  database:'movi'
 });
+server.connect();
 
 //configuration=================================================================
-var db = server.use('movi');
+
 
 //set up express application
 app.use(bodyParser.urlencoded({extended:false}));
@@ -31,8 +32,12 @@ app.use(session({
   secret: 'mother&father&daughter&son@HAPPYFAMILYbabababa',
   resave: false,
   saveUninitialized: true,
-  store:new OrientoStore({
-    server:"host=localhost&port=2424&username=root&password=1234&db=movi"
+  store:new MySQLStore({
+    host:'localhost',
+    port:3306,
+    user:'root',
+    password:'movi1234',
+    database:'movi'
   })
 }));
 

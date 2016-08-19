@@ -67,6 +67,7 @@ a {
 	-ms-transition: all .25s ease;
 	-o-transition: all .25s ease;
 	transition: all .25s ease;
+    color: #6f7678;
 }
 a:focus {
 	text-decoration: none;
@@ -105,7 +106,7 @@ audio {
 }
 input,
 textarea {
-	width: 100%;
+	
 }
 .form-control:focus,
 input:focus,
@@ -224,7 +225,6 @@ h1,h2,h3,h4,h5,h6 {
 	border-left: 1px solid #e9e9e9;
 }
 .menu-search {
-	border-right: 1px solid #e9e9e9;
 	padding-right: 20px;
 }
 .search-form {
@@ -1178,14 +1178,22 @@ footer a {
     margin-top: 20px;
 }
 
+.site-banner {
+    width: 1100px;
+    margin: 0 auto;
+}
+
 .site-banner .section-login {
-    float: right;
+    position: relative;
     bottom: 0.9em;
 }
 
 .site-banner .section-login a {
     color: #6f7678;
     padding: 5px 10px;
+    position: absolute;
+    bottom: 0.9em;
+    right: 0;
 }
 
 .site-banner .section-login a:hover {
@@ -1330,17 +1338,6 @@ footer a {
 
 /*calender.css*/
 
-@font-face {
-	font-family: 'icomoon';
-	src:url('http://jlalovi-cv.herokuapp.com/font/icomoon.eot');
-	src:url('http://jlalovi-cv.herokuapp.com/font/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('http://jlalovi-cv.herokuapp.com/font/icomoon.ttf') format('truetype'),
-		url('http://jlalovi-cv.herokuapp.com/font/icomoon.woff') format('woff'),
-		url('http://jlalovi-cv.herokuapp.com/font/icomoon.svg#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
 [class^="icon-"], [class*=" icon-"] {
 	font-family: 'icomoon';
 	speak: none;
@@ -1373,144 +1370,279 @@ footer a {
 	margin: 6em auto;
 }	
 
-	/** CONTAINERS **/
-		.block {
-			margin-bottom: 25px;
-			background: #394264;
-			border-radius: 5px;
-		}
-    .right-container {}
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;  
+/*login.html*/
+
+.section-login .btn-div {
+    text-align: center;
+}
+.section-login .btn-custom {
+    background-color: #3498db;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    width: 100px;
+    font-size: 1em;
 }
 
-h1 {
-	font-size: 23px;
+.section-login {
+    margin: 30px auto;
 }
 
-h2 {
-	font-size: 17px;
+.section-login .label-title {
+    font-weight: 400;
+    color: #6f7678;
+    font-size: 1em;
 }
 
-p {
-	font-size: 15px;
+.section-login .checkbox-text {
+    color: #6f7678;
 }
 
-a {
-	text-decoration: none;
-	font-size: 15px;
-}
-	a:hover {
-		text-decoration: underline;
-	}
-
-h1, h2, p, a, span{
-	color: #fff;
-}
-	.scnd-font-color {
-		color: #9099b7;
-		line-height: 0; 
-	}
-
-.icon {
-	font-size: 25px;
+.section-title .sub-title .calender {
+    float: right;
 }
 
-.titular {
-	display: block;
-	line-height: 60px;
-	margin: 0;
-	text-align: center;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+.text-center {
+    text-align: center;
 }
-	
-.arrow-btn-container {
-	position: relative;
-}
-	.arrow-btn {
-		position: absolute;
-		display: block;
-		width: 60px;
-		height: 60px;
-		-webkit-transition: background .3s;
-		transition: background .3s;
-	}
-		.arrow-btn:hover {
-			text-decoration: none;
-		}
-		.arrow-btn.left {
-			border-top-left-radius: 5px;
-		}
-		.arrow-btn.right {
-			border-top-right-radius: 5px;
-			right: 0;
-			top: 0;
-		}
-		.arrow-btn .icon {
-			display: block;
-			font-size: 18px;
-			border: 2px solid #fff;
-			border-radius: 100%;
-			line-height: 17px;
-			width: 21px;
-			margin: 20px auto;
-			text-align: center;
-		}
-			.arrow-btn.left .icon {
-				padding-right: 2px;
-			}
 
-			.calendar-day {
-				height: 320px;
-				background: #3468af;
-			}
-				.calendar-day .titular {
-					background: #1a4e95;
-				}
-					.calendar-day .arrow-btn:hover {
-						background: #16417E;
-					}
-				.calendar-day .the-day {
-					margin: 0;
-					text-align: center;
-					font-size: 146px;
-				}
-				.add-event.button {
-					background: #4fc4f6;
-				}
-					.add-event.button:hover {
-						background: #35aadc;
-					}
-			.calendar-month {
-				height: 380px;
-			}
-				.calendar-month .titular {
-					background: #3468af;
-				}
-					.calendar-month .arrow-btn:hover {
-						background: #1a4e95;
-					}
-				.calendar {
-					margin: 22px 15px;
-					text-align: center;
-				}
-					.calendar a {
-						font-size: 17px;
-					}
-					.calendar td, .calendar th {
-						width: 40px;
-						height: 38px;						
-					}
-					.calendar .days-week {
-						color: #4fc4f6;
-					}
-					.calendar .today {
-						display: block;
-						width: 34px;
-						line-height: 34px;
-						background: #e64c65;
-						border-radius: 100%;
-					}
+.signin-section {
+    margin-bottom: 20px;
+}
+
+.signin-section .sign-in {
+    font-size: 1em;
+    text-decoration: none;
+    color: #6f7678;
+    transition: 0.7s;
+}
+
+.signin-section .sign-in:hover {
+    color: #3498db;
+}
+
+.cover-section {
+    position: relative;
+}
+
+.cover {
+    height: 450px;
+    background-image: url(/images/sleeping.jpg);
+    background-size: cover;
+    background-position: 0px -460px;
+    background-repeat: no-repeat;
+}
+
+.cover-section .mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+    top:0;
+}
+
+.cover-section .wrap {
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 37%;
+    margin: auto;
+}
+
+.cover-section .wrap .ex {
+    font-size: 35px;
+    line-height: 70px;
+}
+
+.cover-section .wrap .title img{
+    height: 70px;
+    margin-bottom: 43px;
+    margin-left: 16px;
+}
+
+/*-----------calender.css------------*/
+.title-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.emo-section {
+    text-align: center;
+    font-size: 20px;
+}
+
+.emo-section li {
+    margin: 0 30px;
+}
+
+.emo-section .emo-name {
+    color: #4a4a4a;
+}
+
+.emo-section li .emo {
+    display: inline-block;
+    width: 66px;
+    height: 66px;
+    background-image: url(/images/emotion.png);
+}
+
+.emo-section li:nth-child(1) .emo {
+    background-position: 66px;
+}
+
+.emo-section li:nth-child(2) .emo {
+    background-position: 132px;
+}
+
+.emo-section li:nth-child(3) .emo {
+   
+    background-position: 0px;
+}
+
+.calender-section {
+    margin: 20px 0;
+}
+
+/* Month header */
+.month {
+    padding: 25px 25px;
+    width: 100%;
+    background: #3498db;
+    position: relative;
+}
+
+.month .month-title {
+    display: block;
+    text-align: center;
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month a {
+    color: #fff;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 20px;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 20px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #fff;
+    margin: 0;
+    border: 2px solid #cecece;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:16px;
+    color:#777;
+    padding: 10px;
+    position: relative;
+    border-bottom: 2px solid #cecece;
+}
+
+.days li .num {
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
+
+.days li .emo {
+    display: inline-block;
+    width: 66px;
+    height: 66px;
+    margin-left: 10px;
+}
+
+.days li .emo.goodsleep {
+    background-image: url(/images/emotion.png);
+    background-position: 66px;
+}
+
+.days li .emo.sleep {
+    background-image: url(/images/emotion.png);
+    background-position: 132px;
+}
+
+.days li .emo.tired {
+    background-image: url(/images/emotion.png);
+    background-position: 0px;
+}
+/* Highlight the "current" day */
+.days li .active {
+    padding: 7px;
+    background: #3498db;
+    color: white !important;
+    border-radius: 100%;
+    width: 36px;
+    height: 36px;
+}
+
+/*-----------------login.css------------*/
+
+.facebook-section {
+    text-align: center;
+    margin: 10px 0 30px 0;
+}
+
+.facebook-section img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.facebook-section a {
+    font-size: 20px;
+}
+
+.facebook-section a:hover {
+    color: #3498db;
+}
+
+.facebook-section .facebook-login {
+    padding: 25px 50px;
+    border-top: 2px solid #cecece;
+    border-bottom: 2px solid #cecece;
+}

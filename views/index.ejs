@@ -45,27 +45,26 @@
 
   	</head>
   	<body class="header-fixed-top">
+	  		<div id="page-top" class="page-top"></div><!-- /.page-top -->
 
-  		<div id="page-top" class="page-top"></div><!-- /.page-top -->
+	  		<section id="site-banner" class="site-banner text-center">
+	  			<div class="container">
+	  				<div class="site-logo">
+	  					<a href="/"><img src="images/logo-movi.png"> </a>
+							<div class="section-login">
+											<div class="btn-loginandsignup" style = "clear:both">
+												<% if (message) { %>
+													<%= message %> 님  안녕하세요!
+													<a href="/logout" class="btn-default">logout</a>
+												<% }else { %>
+													<a href="/login" class="btn-default">로그인</a>
+												<% } %>
+											</div>
+									</div>
+	  				</div><!-- /.site-logo -->
 
-  		<section id="site-banner" class="site-banner text-center">
-  			<div class="container">
-  				<div class="site-logo">
-  					<a href="/"><img src="images/logo-movi.png"> </a>
-  				</div><!-- /.site-logo -->
-                <div class="section-login">
-                    <div class="btn-loginandsignup">
-											<% if (message) { %>
-									      <%= message %> 님  안녕하세요!
-												<a href="/logout" class="btn-default">logout</a>
-									    <% }else { %>
-											  <a href="/login" class="btn-default">login</a>
-											  <a href="/signup" class="btn-default">signup</a>
-											<% } %>
-                  	</div>
-                </div>
-  			</div><!-- /.container -->
-  		</section><!-- /#site-banner -->
+				</div><!-- /.container -->
+			</section><!-- /#site-banner -->
 
 
 
@@ -83,9 +82,9 @@
                         </div>
                         <nav id="menu" class="menu collapse navbar-collapse">
                             <ul id="headernavigation" class="menu-list nav navbar-nav">
-                                <li><a href="/">나의 잠버릇</a></li>
-                                <li><a href="graph.ejs">어떻게 잤나?</a></li>
-                                <li><a href="#services">훔쳐보기</a></li>
+                                <li><a href="/">잠버릇 자랑</a></li>
+                                <li><a href="/open-video">나의 잠버릇</a></li>
+                                <li><a href="/graph">어떻게 잤나?</a></li>
                             </ul><!-- /.menu-list -->
                         </nav><!-- /.menu-list -->
                     </div>
@@ -101,16 +100,31 @@
       </div><!-- /.row -->
     </div><!-- /.container -->
   </header><!-- /#main-menu -->
+		<div class="cover-section">
+						<div class="cover"></div>
+						<div class="mask"></div>
+						<div class="wrap">
+								<div class="cafe-title">
+										<span class="ex">당신의 꿀잠을 위한 수면 전문가 </span>
+										<span class="title">
+										<img src="images/logo-movi-white.png">
+										</span>
+								</div>
+						</div>
+	</div>
 
 
 <div class="container">
     <div class="section-title">
         <h2 class="title">나의 잠버릇</h2>
+				<div class="sub-title">
+            <a href="/calender" class="calender">달력으로 보기</a>
+        </div>
     </div>
     <div class="col-md-12">
         <div class="today-video">
 					<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" poster="http://d1wkhxhl0qw8m2.cloudfront.net/image/1.png" data-setup="{}">
-						<source src="http://d1wkhxhl0qw8m2.cloudfront.net/video/cheerup.mp4" type='video/mp4' />
+						<source src="http://d1wkhxhl0qw8m2.cloudfront.net/video/cheerup.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
 					</video>
         </div>
 				<span>""</span>
@@ -124,7 +138,7 @@
 									<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
 									<img src =http://d1wkhxhl0qw8m2.cloudfront.net/image/<%= 9*(currentPage-1)+1+j+i*3 %>.png>
 									<% } else { %>
-									<span>""</span>
+									<span></span>
 									<% } %>
 								</div>
 						</div><% } %>

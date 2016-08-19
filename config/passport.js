@@ -5,14 +5,14 @@ var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
 var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var OrientDB         = require('orientjs');
-var server           = OrientDB({
+var mysql         = require('mysql');
+var server           = mysql.createConnection({
   host:'localhost',
-  port:2424,
-  username:'root',
-  password:'1234'
+  user:'root',
+  password:'movi1234',
+  database:'movi'
 });
-var db = server.use('movi');
+server.connect();
 
 
 //expose this function to our app using module.exports

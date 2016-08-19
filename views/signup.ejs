@@ -1,51 +1,205 @@
-<!-- views/signup.ejs -->
-<!doctype html>
 <html>
 <head>
-    <title>Movi</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
-</head>
-<body>
+	<meta charset="UTF-8">
+	<title>Movi</title>
+
+	<meta name="description" content="Heera HTML5 Template by Jewel Theme" >
+
+	<meta name="author" content="Jewel Theme">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+	<!-- Bootstrap  -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- icon fonts font Awesome -->
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Import Magnific Pop Up Styles -->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+	<!-- Import Animate Styles -->
+	<link href="assets/css/animate.min.css" rel="stylesheet">
+
+	<!-- Import owl.carousel Styles -->
+	<link href="assets/css/owl.carousel.css" rel="stylesheet">
+
+	<!-- Import Custom Responsive Styles -->
+	<link href="assets/css/responsive.css" rel="stylesheet">
+
+    <!-- Import Custom Styles -->
+	<link href="assets/css/style.css" rel="stylesheet">
+
+
+	<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  		<![endif]-->
+
+  	</head>
+  	<body class="header-fixed-top">
+
+  		<div id="page-top" class="page-top"></div><!-- /.page-top -->
+
+  		<section id="site-banner" class="site-banner text-center">
+  			<div class="container">
+  				<div class="site-logo">
+  					<a href="/"><img src="images/logo-movi.png"> </a>
+  				</div><!-- /.site-logo -->
+                <div class="section-login">
+                    <div class="btn-login">
+                        <a href="/login">로그인</a>
+                    </div>
+                </div>
+  			</div><!-- /.container -->
+  		</section><!-- /#site-banner -->
+
+
+
+  		<header id="main-menu" class="main-menu">
+  			<div class="container">
+  				<div class="row">
+  					<div class="col-sm-7">
+  						<div class="navbar-header">
+  							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+  								<i class="fa fa-bars"></i>
+  							</button>
+                            <div class="menu-logo">
+                              <a href="./"><img src="images/logo-movi-small.png" alt="menu Logo"></a>
+                            </div><!-- /.menu-logo -->
+                        </div>
+                        <nav id="menu" class="menu collapse navbar-collapse">
+                            <ul id="headernavigation" class="menu-list nav navbar-nav">
+                                <li><a href="/">잠버릇자랑</a></li>
+                                <li><a href="/open-video">나의 잠버릇</a></li>
+                                <li><a href="/graph">어떻게 잤나?</a></li>
+                            </ul><!-- /.menu-list -->
+                        </nav><!-- /.menu-list -->
+                    </div>
+
+          <div class="col-sm-5">
+            <div class="menu-search pull-right">
+             <form role="search" class="search-form" action="#" method="get">
+              <input class="search-field" type="text" name="s" id="s" placeholder="날짜 검색하기" required>
+              <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+            </form><!-- /.search-form -->
+          </div><!-- /.menu-search -->
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </header><!-- /#main-menu -->
+
+
 <div class="container">
+    <div class="section-title">
+        <h2 class="title">반갑습니다!</h2>
+        <div class="section-login">
+            <form class="form-horizontal">
+                <div class="form-group">
 
-<div class="col-sm-6 col-sm-offset-3">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="이름">
+                </div>
+              </div>
+              <div class="form-group">
 
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
+                <div class="col-sm-4 col-sm-offset-4">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="이메일">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <input type="password" class="form-control" id="inputPassword3" placeholder="비밀번호">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-4">
+                  <input type="password" class="form-control" id="inputPassword3" placeholder="모비코드">
+                </div>
+              </div>
+                <div class="form-group">
+                <div class="text-center col-sm-offset-4 col-sm-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"><span class="checkbox-text">로봇이 아닙니다</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-4 btn-div">
+                  <a type="submit" class="btn btn-custom">가입하기</a>
+                </div>
+              </div>
+            </form>
 
-    <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" name="username">
         </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-
-        <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-    </form>
-
-    <hr>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+    </div>
 
 </div>
 
-</div>
+
+
+
+<footer>
+
+  <div id="footer-bottom" class="footer-bottom text-center">
+    <div class="container">
+      <div id="copyright" class="copyright">
+        &copy; <a href="/">Movi</a> 2016 All rights reserved &amp; Designed by <a href="/">Movi Team</a>
+      </div><!-- /#copyright -->
+    </div>
+  </div><!-- /#footer-bottom -->
+</footer>
+
+
+
+<div id="scroll-to-top" class="scroll-to-top">
+  <span>
+    <i class="fa fa-chevron-up"></i>
+  </span>
+</div><!-- /#scroll-to-top -->
+
+
+
+<!-- Include modernizr-2.8.3.min.js -->
+<script src="assets/js/modernizr-2.8.3.min.js"></script>
+
+<!-- Include jquery.min.js plugin -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Include magnific-popup.min.js -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+<!-- Google Maps Script -->
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+<!-- Gmap3.js For Static Maps -->
+<script src="assets/js/gmap3.js"></script>
+
+<!-- Javascript Plugins  -->
+<script src="assets/js/plugins.js"></script>
+
+<!-- Custom Functions  -->
+<script src="assets/js/functions.js"></script>
+
+<script src="assets/js/wow.min.js"></script>
+
+<script type="text/javascript" src="assets/js/jquery.ajaxchimp.min.js"></script>
+
+<!-- Compiled and minified JavaScript -->
+
+
+<script>
+
+
+
+
+</script>
+
 </body>
 </html>

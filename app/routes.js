@@ -22,14 +22,14 @@ s3.listObjects(
 //DataBase Setup
 var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
-var OrientDB         = require('orientjs');
-var server           = OrientDB({
+var mysql         = require('mysql');
+var server           = mysql.createConnection({
   host:'localhost',
-  port:2424,
-  username:'root',
-  password:'1234'
+  user:'root',
+  password:'movi1234',
+  database:'movi'
 });
-var db = server.use('movi');
+server.connect();
 
 module.exports = function(app, passport) {
 
@@ -74,9 +74,18 @@ module.exports = function(app, passport) {
       }
     });
 
-    app.get('/graph.ejs',function(req,res){
+    app.get('/graph',function(req,res){
       res.render('graph.ejs')
     })
+
+    app.get('/calender',function(req,res){
+      res.render('calender.ejs')
+    })
+
+    app.get('/open-video',function(req,res){
+      res.render('open-video.ejs')
+    })
+
 
 
     // =====================================
