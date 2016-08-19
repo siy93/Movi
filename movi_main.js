@@ -52,7 +52,7 @@ app.use(express.static('public'));
 //required for passport
 require('./app/routes.js')(app,passport);
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport.js')(passport); // pass passport for configuration
 
 
 app.listen(port,function(){

@@ -75,15 +75,30 @@ module.exports = function(app, passport) {
     });
 
     app.get('/graph',function(req,res){
-      res.render('graph.ejs')
+      if (req.isAuthenticated())
+          return res.render('graph.ejs');
+      else {
+        req.flash('loginMessage', '로그인이 필요한 서비스 입니다.')
+        res.render('login.ejs',{message:req.flash('loginMessage')})
+      }
     })
 
     app.get('/calender',function(req,res){
-      res.render('calender.ejs')
+      if (req.isAuthenticated())
+          return res.render('calender.ejs');
+      else {
+        req.flash('loginMessage', '로그인이 필요한 서비스 입니다.')
+        res.render('login.ejs',{message:req.flash('loginMessage')})
+      }
     })
 
     app.get('/open-video',function(req,res){
-      res.render('open-video.ejs')
+      if (req.isAuthenticated())
+          return res.render('open-video.ejs');
+      else {
+        req.flash('loginMessage', '로그인이 필요한 서비스 입니다.')
+        res.render('login.ejs',{message:req.flash('loginMessage')})
+      }
     })
 
 
@@ -93,7 +108,6 @@ module.exports = function(app, passport) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
@@ -101,7 +115,7 @@ module.exports = function(app, passport) {
     // process the login form
     // app.post('/login', do all our passport stuff here);
     app.post('/login', passport.authenticate('local-login', {
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureRedirect : '/login',
         failureFlash : true // allow flash messages
     }),
     function(req,res){
@@ -141,10 +155,8 @@ module.exports = function(app, passport) {
           password:hash,
           salt:salt
         };
-        var sql = 'INSERT INTO user (authId,username,email,password,salt) VALUES(:authId,:username,:email,:password,:salt)'
-        db.query(sql,{
-          params:user
-        }).then(function(results){
+        var sql = 'INSERT INTO users (authId,username,email,password,salt) VALUES(:authId,:username,:email,:password,:salt)'
+        server.query(sql,user,function(results){
           req.login(user, function(err){
             req.session.save(function(){
               res.redirect('/');

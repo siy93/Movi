@@ -3,6 +3,9 @@
 	<meta charset="UTF-8">
 	<title>Movi</title>
 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
 	<meta name="description" content="Heera HTML5 Template by Jewel Theme" >
 
 	<meta name="author" content="Jewel Theme">
@@ -51,7 +54,7 @@
   				</div><!-- /.site-logo -->
                 <div class="section-login">
                     <div class="btn-login">
-                        <a href="/">로그인</a>
+                        <a href="/login">로그인</a>
                     </div>
                 </div>
   			</div><!-- /.container -->
@@ -97,46 +100,50 @@
     <div class="section-title">
         <h2 class="title">로그인</h2>
         <div class="section-login">
-            <form class="form-horizontal">
-              <div class="form-group">
-
-                <div class="col-sm-4 col-sm-offset-4">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="이메일">
-                </div>
-              </div>
-              <div class="form-group">
-
-                <div class="col-sm-4 col-sm-offset-4">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="비밀번호">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="text-center col-sm-offset-4 col-sm-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"><span class="checkbox-text">로그인 유지</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-							<div class="form-group">
-                <div class="col-sm-offset-4 col-sm-4 btn-div">
-                  <a type="submit" class="btn btn-custom">로그인</a>
-                </div>
-              </div>
+            <form class="form-horizontal" action="/login" method="post" >
+								<% if (message.length > 0) { %>
+									<div class="col-sm-4 col-sm-offset-4">
+					        <div class="alert alert-danger"><%= message %></div>
+								</div>
+					    	<% } %>
+	              <div class="form-group">
+	                <div class="col-sm-4 col-sm-offset-4">
+	                  <input type="text" class="form-control" name="email" placeholder="이메일">
+	                </div>
+	              </div>
+	              <div class="form-group">
+	                <div class="col-sm-4 col-sm-offset-4">
+	                  <input type="text" class="form-control" name="password" placeholder="비밀번호">
+	                </div>
+	              </div>
+	              <div class="form-group">
+	                <div class="text-center col-sm-offset-4 col-sm-4">
+	                  <div class="checkbox">
+	                    <label>
+	                      <input type="checkbox"><span class="checkbox-text">로그인 유지</span>
+	                    </label>
+	                  </div>
+	                </div>
+	              </div>
+								<div class="form-group">
+	                <div class="col-sm-offset-4 col-sm-4 btn-div">
+	                  <button type="submit" class="btn btn-custom">로그인</button>
+	                </div>
+	              </div>
+						</form>
             <div class="signin-section text-center col-sm-offset-4 col-sm-4">
                   <a class="sign-in" href="/signup">
                     아직 회원이 아니신가요? 회원가입하기
                   </a>
             </div>
-            <div class="facebook-section col-sm-12">
+
+						<div class="facebook-section col-sm-12">
                 <span class="facebook-login">
                 <a class="facebook-btn" href="/auth/facebook">
                     <img src="images/facebook%20white.png"> 페이스북으로 시작하기
                 </a>
                 </span>
             </div>
-            </form>
         </div>
     </div>
 </div>
