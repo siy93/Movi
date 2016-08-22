@@ -36,6 +36,10 @@
 	<link href="assets/css/responsive.css" rel="stylesheet">
 
 
+		<link href="http://vjs.zencdn.net/5-unsafe/video-js.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/5-unsafe/video.js"></script>
+
+
 	<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   		<![endif]-->
@@ -48,11 +52,15 @@
   		<section id="site-banner" class="site-banner text-center">
   			<div class="container-2">
   				<div class="site-logo">
-  					<a href="/"><img src="images/logo-movi.png"> </a>
+  					<a href="/"><img src="images/logo-zs2.png"> </a>
   				</div><!-- /.site-logo -->
                 <div class="section-login">
                     <div class="btn-login">
-                        <a href="/login">로그인</a>
+											<% if (message) { %>
+												<a href="/logout" class="btn-default">로그아웃</a>
+											<% }else { %>
+												<a href="/login" class="btn-default">로그인</a>
+											<% } %>
                     </div>
                 </div>
   			</div><!-- /.container -->
@@ -69,7 +77,7 @@
   								<i class="fa fa-bars"></i>
   							</button>
                             <div class="menu-logo">
-                              <a href="./"><img src="images/logo-movi-small.png" alt="menu Logo"></a>
+                              <a href="./"><img src="images/logo-zs2-small.png" alt="menu Logo"></a>
                             </div><!-- /.menu-logo -->
                         </div>
                         <nav id="menu" class="menu collapse navbar-collapse">
@@ -93,135 +101,66 @@
     </div><!-- /.container -->
   </header><!-- /#main-menu -->
 
+	<div class="container">
+	    <div class="section-title">
+	        <h2 class="title"><%= recentday %></br>의 수면 영상입니다 </h2>
+	    </div>
+	    <div class="col-md-12">
+	        <div class="today-video">
+						<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" data-setup="{}">
+							<source src=http://d1wkhxhl0qw8m2.cloudfront.net/video/<%= find %>.mp4 type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+						</video>
+	        </div>
+					<span>'</span>
+	    </div>
+			<div class="section-movie">
+				<% for(var i=0; i< 3 ; i++) {%>
+						<div class = "row">
+							<% for(var j=0; j< 3 ; j++) {%>
+								<div class="col-md-4 box">
+									<%= allday[9*(currentPage-1)+1+j+i*3] %>
+									<div class = inner>
+										<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
+										<a href="/open-video?recentday=<%= allday[9*(currentPage-1)+1+j+i*3] %>"><img src =http://img.youtube.com/vi/-Ym-zCKH-g4/hqdefault.jpg></a>
+										<% } else { %>
+										<span></span>
+										<% } %>
+									</div>
+							</div><% } %>
+						</div>
+				<% } %>
+			</div>
+			<div class="section-pagination">
+			<% if (pageCount > 1 ) { %>
+			<ul class="pagination">
+			  <%if (currentPage > 1) { %>
+			    <li><a href="/open-video?page=1">이전</a><li>
+			  <% } %>
+			  <% var i = 1;
+			  if(currentPage > 5 ){
+			   i = +currentPage - 4;
+			  } %>
+			 <% if (i !== 1) { %>
+			    <li class = "disabled"><a href = "#">...</a><li>
+			 <% } %>
+			 <% for (i;i<=pageCount; i++){ %>
+			   <% if (currentPage == i) {%>
+			     <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+			 <% } else { %>
+			     <li><a href="/open-video?page=<%= i %>"><%= i %></a></li>
+			 <% } %>
+			 <% if (i == (+currentPage + 4)) { %>
+			     <li class="disabled"><a href="#">...</a></li>
+			 <% break; } %>
+			<% } %>
+			<% if (currentPage != pageCount) { %>
+			   <li><a href="/open-video?page=<%= pageCount %>">다음</a></li>
+			<% } %>
+			</ul>
+			<% } %>
+			</div>
 
-<div class="container">
-    <div class="section-title">
-        <h2 class="title">나의 잠버릇</h2>
-        <div class="sub-title">
-            <a href="calender.html" class="calender">달력으로 보기</a>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="today-video">
-            <video width="360" height="240" controls preload="auto">
-                <source src="assets/Yerin%20Baek(%EB%B0%B1%EC%98%88%EB%A6%B0)%20'Across%20the%20universe(%EC%9A%B0%EC%A3%BC%EB%A5%BC%20%EA%B1%B4%EB%84%88)'%20M-V.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-        </div>
-    </div>
-    <div class="section-movie">
-        <div class="row">
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-28
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie01.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-27
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie02.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-26
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie03.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-25
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie04.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-24
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie05.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-23
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie06.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-22
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie07.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-21
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie08.png">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 box">
-                <div class="inner">
-                    <span class="date">
-                        2016-06-20
-                    </span>
-                    <a href="/" class="image">
-                        <img src="images/movie09.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-pagination">
-        <ul class="pagination">
-            <li><a href="#">이전</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">다음</a></li>
-        </ul>
-    </div>
-</div>
-
-
-
-
+	</div>
 <footer>
 
   <div id="footer-bottom" class="footer-bottom text-center">
@@ -267,6 +206,25 @@
 <script src="assets/js/wow.min.js"></script>
 
 <script type="text/javascript" src="assets/js/jquery.ajaxchimp.min.js"></script>
+
+<script type="text/javascript">
+  // Once the video is ready
+  _V_("example_video_1").ready(function(){
+
+    var myPlayer = this;    // Store the video object
+    var aspectRatio = 9/16; // Make up an aspect ratio
+
+    function resizeVideoJS(){
+      // Get the parent element's actual width
+      var width = document.getElementById(myPlayer.id).parentElement.offsetWidth;
+      // Set width to fill parent element, Set height
+      myPlayer.width(width).height( width * aspectRatio );
+    }
+
+    resizeVideoJS(); // Initialize the function
+    window.onresize = resizeVideoJS; // Call the function on resize
+  });
+</script>
 
 <!-- Compiled and minified JavaScript -->
 

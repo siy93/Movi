@@ -181,7 +181,7 @@ h1,h2,h3,h4,h5,h6 {
 	height: 120px;
 }
 .site-logo {
-	padding-top: 35px;
+	padding: 20px 0;
 }
 
 /* Main Menu Section */
@@ -1175,12 +1175,12 @@ footer a {
 
 .today-video {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .site-banner {
     width: 1100px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .site-banner .section-login {
@@ -1220,6 +1220,11 @@ footer a {
 
 .container .section-movie .image {
     display: block;    
+}
+
+.container .section-movie .box .video-id {
+    text-align: left;
+    margin-left: 40px;
 }
 
 .section-pagination {
@@ -1458,7 +1463,7 @@ footer a {
 }
 
 .cover-section .wrap .title img{
-    height: 70px;
+    height: 90px;
     margin-bottom: 43px;
     margin-left: 16px;
 }
@@ -1504,20 +1509,19 @@ footer a {
 
 .calender-section {
     margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;   
 }
 
 /* Month header */
 .month {
-    padding: 25px 25px;
+    padding: 15px 25px;
     width: 100%;
     background: #3498db;
     position: relative;
 }
 
-.month .month-title {
-    display: block;
-    text-align: center;
-}
+
 
 /* Month list */
 .month ul {
@@ -1532,6 +1536,12 @@ footer a {
     letter-spacing: 3px;
 }
 
+.month .month-title {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+}
+
 /* Previous button inside month header */
 .month a {
     color: #fff;
@@ -1539,13 +1549,13 @@ footer a {
 
 .month .prev {
     float: left;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 /* Next button */
 .month .next {
     float: right;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 /* Weekdays (Mon-Sun) */
@@ -1568,6 +1578,8 @@ footer a {
     background: #fff;
     margin: 0;
     border: 2px solid #cecece;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .days li {

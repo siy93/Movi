@@ -33,7 +33,7 @@ module.exports = function(passport){
    //used to deserialize the user
    passport.deserializeUser(function(id, done) {
      console.log('deserializeUser', id);
-     var sql = "SELECT FROM users WHERE authId=?";
+     var sql = 'SELECT * FROM users WHERE authId=?';
      server.query(sql,[id],function(err,results){
        if(err){
          console.log(err);
@@ -59,7 +59,7 @@ module.exports = function(passport){
       function( req, email, password, done){
         var em = email;
         var pwd = password;
-        var sql = 'SELECT * FROM users WHERE authId=:authId';
+        var sql = 'SELECT * FROM users WHERE authId=?';
         server.query(sql,['local:'+em],function(err,results){
           if(err){
             console.log('LocalStrategy',user);
@@ -88,7 +88,7 @@ module.exports = function(passport){
     function(accessToken,refreshToken,profile,done){
       console.log(profile);
       var authId = 'facebook:'+profile.id;
-      var sql = 'SELECT FROM user WHERE authId=:authId';
+      var sql = 'SELECT * FROM users WHERE authId=?';
       server.query(sql,[authId],function(err,results){
         if(results.length>0){
           done(null,results[0]);
@@ -98,7 +98,7 @@ module.exports = function(passport){
             'username':profile.displayName,
             'email':profile.emails[0].value
           };
-          var sql = 'INSERT INTO users (authId,username,email) VALUES(:authId,:username,:email)';
+          var sql = 'INSERT INTO users SET ?';
           server.query(sql,user,function(err,results){
             if(err){
             console.log(err);

@@ -45,27 +45,25 @@
 
   	</head>
   	<body class="header-fixed-top">
-	  		<div id="page-top" class="page-top"></div><!-- /.page-top -->
+			  		<div id="page-top" class="page-top"></div><!-- /.page-top -->
 
-	  		<section id="site-banner" class="site-banner text-center">
-	  			<div class="container">
-	  				<div class="site-logo">
-	  					<a href="/"><img src="images/logo-movi.png"> </a>
-							<div class="section-login">
-											<div class="btn-loginandsignup" style = "clear:both">
-												<% if (message) { %>
-													<%= message %> 님  안녕하세요!
-													<a href="/logout" class="btn-default">logout</a>
-												<% }else { %>
-													<a href="/login" class="btn-default">로그인</a>
-												<% } %>
+			  		<section id="site-banner" class="site-banner text-center">
+			  			<div class="container">
+			  				<div class="site-logo">
+			  					<a href="/"><img src="images/logo-zs1.png"> </a>
+			  				</div><!-- /.site-logo -->
+	                <div class="section-login">
+											<% if (message) { %>
+												<div>
+										    <%= message %> 님  안녕히 주무셨나요?
 											</div>
-									</div>
-	  				</div><!-- /.site-logo -->
-
-				</div><!-- /.container -->
-			</section><!-- /#site-banner -->
-
+												<a href="/logout" class="btn-default">로그아웃</a>
+									    <% }else { %>
+											  <a href="/login" class="btn-default">로그인</a>
+											<% } %>
+	                </div>
+			  			</div><!-- /.container -->
+			  		</section><!-- /#site-banner -->
 
 
   		<header id="main-menu" class="main-menu">
@@ -77,7 +75,7 @@
   								<i class="fa fa-bars"></i>
   							</button>
                             <div class="menu-logo">
-                              <a href="./"><img src="images/logo-movi-small.png" alt="menu Logo"></a>
+                              <a href="./"><img src="images/logo-zs2-small.png" alt="menu Logo"></a>
                             </div><!-- /.menu-logo -->
                         </div>
                         <nav id="menu" class="menu collapse navbar-collapse">
@@ -92,7 +90,7 @@
           <div class="col-sm-5">
             <div class="menu-search pull-right">
              <form role="search" class="search-form" action="#" method="get">
-              <input class="search-field" type="text" name="s" id="s" placeholder="날짜 검색하기" required>
+              <input class="search-field" type="text" name="s" id="s" placeholder="동영상 검색하기" required>
               <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
             </form><!-- /.search-form -->
           </div><!-- /.menu-search -->
@@ -107,72 +105,75 @@
 								<div class="cafe-title">
 										<span class="ex">당신의 꿀잠을 위한 수면 전문가 </span>
 										<span class="title">
-										<img src="images/logo-movi-white.png">
+										<img src="images/logo-zs2-small.png">
 										</span>
 								</div>
 						</div>
 	</div>
 
 
-<div class="container">
-    <div class="section-title">
-        <h2 class="title">나의 잠버릇</h2>
-    </div>
-    <div class="col-md-12">
-        <div class="today-video">
-					<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" poster="http://d1wkhxhl0qw8m2.cloudfront.net/image/1.png" data-setup="{}">
-						<source src="http://d1wkhxhl0qw8m2.cloudfront.net/video/cheerup.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-					</video>
-        </div>
-				<span>""</span>
-    </div>
-		<div class="section-movie">
-			<% for(var i=0; i< 3 ; i++) {%>
-					<div class = "row">
-						<% for(var j=0; j< 3 ; j++) {%>
-							<div class="col-md-4 box">
-								<div class = inner>
-									<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
-									<img src =http://d1wkhxhl0qw8m2.cloudfront.net/image/<%= 9*(currentPage-1)+1+j+i*3 %>.png>
-									<% } else { %>
-									<span></span>
-									<% } %>
-								</div>
-						</div><% } %>
-					</div>
+	<div class="container">
+	    <div class="section-title">
+	        <h2 class="title">잠버릇 자랑</h2>
+	    </div>
+	    <div class="col-md-12">
+	        <div class="today-video">
+						<div class="video-id">
+                <span class="date">라이언</span><span>의 잠버릇</span>
+            </div>
+						<video id="example_video_1" class="video-js vjs-fluid placeholder" controls preload="auto" poster="http://d1wkhxhl0qw8m2.cloudfront.net/image/1.png" data-setup="{}">
+							<source src="http://d1wkhxhl0qw8m2.cloudfront.net/video/123_2016년8월9일.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+						</video>
+	        </div>
+					<span>""</span>
+	    </div>
+			<div class="section-movie">
+				<% for(var i=0; i< 3 ; i++) {%>
+						<div class = "row">
+							<% for(var j=0; j< 3 ; j++) {%>
+								<div class="col-md-4 box">
+									<div class = inner>
+										<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
+										<img src =http://d1wkhxhl0qw8m2.cloudfront.net/image/<%= 9*(currentPage-1)+1+j+i*3 %>.png>
+										<% } else { %>
+										<span></span>
+										<% } %>
+									</div>
+							</div><% } %>
+						</div>
+				<% } %>
+			</div>
+			<div class="section-pagination">
+			<% if (pageCount > 1 ) { %>
+			<ul class="pagination">
+			  <%if (currentPage > 1) { %>
+			    <li><a href="/?page=1">이전</a><li>
+			  <% } %>
+			  <% var i = 1;
+			  if(currentPage > 5 ){
+			   i = +currentPage - 4;
+			  } %>
+			 <% if (i !== 1) { %>
+			    <li class = "disabled"><a href = "#">...</a><li>
+			 <% } %>
+			 <% for (i;i<=pageCount; i++){ %>
+			   <% if (currentPage == i) {%>
+			     <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+			 <% } else { %>
+			     <li><a href="/?page=<%= i %>"><%= i %></a></li>
+			 <% } %>
+			 <% if (i == (+currentPage + 4)) { %>
+			     <li class="disabled"><a href="#">...</a></li>
+			 <% break; } %>
 			<% } %>
-		</div>
-		<div class="section-pagination">
-		<% if (pageCount > 1 ) { %>
-		<ul class="pagination">
-		  <%if (currentPage > 1) { %>
-		    <li><a href="/?page=1">이전</a><li>
-		  <% } %>
-		  <% var i = 1;
-		  if(currentPage > 5 ){
-		   i = +currentPage - 4;
-		  } %>
-		 <% if (i !== 1) { %>
-		    <li class = "disabled"><a href = "#">...</a><li>
-		 <% } %>
-		 <% for (i;i<=pageCount; i++){ %>
-		   <% if (currentPage == i) {%>
-		     <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
-		 <% } else { %>
-		     <li><a href="/?page=<%= i %>"><%= i %></a></li>
-		 <% } %>
-		 <% if (i == (+currentPage + 4)) { %>
-		     <li class="disabled"><a href="#">...</a></li>
-		 <% break; } %>
-		<% } %>
-		<% if (currentPage != pageCount) { %>
-		   <li><a href="/?page=<%= pageCount %>">다음</a></li>
-		<% } %>
-		</ul>
-		<% } %>
-		</div>
+			<% if (currentPage != pageCount) { %>
+			   <li><a href="/?page=<%= pageCount %>">다음</a></li>
+			<% } %>
+			</ul>
+			<% } %>
+			</div>
 
-</div>
+	</div>
 
 
 

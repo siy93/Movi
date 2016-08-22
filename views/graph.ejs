@@ -35,6 +35,19 @@
 	<!-- Import Custom Responsive Styles -->
 	<link href="assets/css/responsive.css" rel="stylesheet">
 
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script type = "text/javascript">
+	var num = new Array(<%= y %>);
+	function average(array) {
+		var sum = 0.00;
+
+		for (var i = 0; i < array.length; i++)
+			sum += array[i];
+
+		document.write(sum / array.length);
+	}
+	</script>
+
 
 	<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -48,11 +61,15 @@
   		<section id="site-banner" class="site-banner text-center">
   			<div class="container">
   				<div class="site-logo">
-  					<a href="/"><img src="images/logo-movi.png"> </a>
+  					<a href="/"><img src="images/logo-zs1.png"> </a>
   				</div><!-- /.site-logo -->
                 <div class="section-login">
                     <div class="btn-login">
-                        <a href="/login">로그인</a>
+											<% if (message) { %>
+												<a href="/logout" class="btn-default">로그아웃</a>
+											<% }else { %>
+												<a href="/login" class="btn-default">로그인</a>
+											<% } %>
                     </div>
                 </div>
   			</div><!-- /.container -->
@@ -69,7 +86,7 @@
   						<i class="fa fa-bars"></i>
   		            </button>
                     <div class="menu-logo">
-                        <a href="./"><img src="images/logo-movi-small.png" alt="menu Logo"></a>
+                        <a href="./"><img src="images/logo-zs2-small.png" alt="menu Logo"></a>
                     </div><!-- /.menu-logo -->
                 </div>
                 <nav id="menu" class="menu collapse navbar-collapse">
@@ -93,88 +110,58 @@
     </div><!-- /.container -->
 </header><!-- /#main-menu -->
 
+
     <div class="container">
         <div class="section-title">
             <h2 class="title">어떻게 잤나?</h2>
+						<div class="sub-title">
+								<a href="/calender" class="calender">달력으로 보기</a>
+						</div>
         </div>
         <div class="row graph-grid">
-            <div class="grid-box col-md-4">
-                <div class="graph-title">얼마나 잠?</div>
-                <div class="container">
-                    <div id="graph-wrapper" class="graph-wrap">
-                        <div class="graph-info">
-                            <a href="#" id="lines" class="active"><span></span></a>
-                        </div>
-                        <div class="graph-container col-md-4">
-                            <div id="graph-lines"></div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="graphline-title">
-                    <div class="graph-line">
-                        <span class="circle green"></span> <span class="name">나의 그래프</span>
-                    </div>
-                    <div class="graph-line">
-                        <span class="circle mint"></span> <span class="name">평균</span>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-box col-md-4">
-                <div class="graph-title">언제 많이 움직임?</div>
-                <div class="container">
-                    <div id="graph-wrapper" class="graph-wrap">
-                        <div class="graph-info">
-                            <a href="#" id="lines" class="active"><span></span></a>
-                        </div>
-                        <div class="graph-container col-md-4">
-                            <div id="graph-lines-2"></div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="graphline-title">
-                    <div class="graph-line">
-                        <span class="circle blue"></span> <span class="name">나의 그래프</span>
-                    </div>
-                    <div class="graph-line">
-                        <span class="circle purple"></span> <span class="name">평균</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+          <div class="grid-box col-md-16">
+                <div class="graph-title">8월의 수면시간</div>
+
+                <div id="graph-bar" style="width:1--%;height:500px;"></div>
+        	</div>
+				</div>
         <div class="snor-rank-section">
             <div class="snor-rank">
-                <span class="snor">당신의 코골이 순위는</span>
-                <span class="your">3위</span>!
+                <span class="snor">8월 당신의 평균 수면시간은</span></br>
+                <span class="your">
+									<script type="text/javascript">
+										average(num);
+									</script>
+								</span>시간 입니다!
             </div>
         </div>
+				</br></br></br></br></br>
         <div class="snor-rank-section">
             <div class="snor-rank">
-                <span class="snor">최근 당신의 꿀잠지수는</span>
-                <span class="your">88</span><span class="score">/100</span>
+                <span class="snor"><%= recentday %> 의 수면 </br>당신의 꿀잠지수는</span>
+                <span class="your"><%= count %></span><span class="score">점 !</span>
             </div>
         </div>
-        <div class="snor-audio">
-            <div class="audio-title">
-                <span>잠꼬대 듣기</span>
-            </div>
-            <div class="audio-list">
-                <audio controls
-                src="http://d1wkhxhl0qw8m2.cloudfront.net/voice/test.mp3">
-                </audio>
-            </div>
-            <div class="audio-list">
-                <audio controls
-                src="http://d1wkhxhl0qw8m2.cloudfront.net/voice/test.mp3">
-                </audio>
-            </div>
-        </div>
-    </div>
+			</div>
+		</br></br></br></br></br>
+		<div class="container">
+			<div class="row graph-grid">
+				<div class="grid-box col-md-16">
+							<div class="graph-title">시간에 따른 뒤척임 횟수</div>
+							<div id="graph-plot" style="width:1--%;height:500px;"></div>
+				</div>
+			</div>
+			</br></br></br></br></br>
+				<div class="snor-rank section"> 어떤 자세로 많이 잤나요?
+						<div>군인형 : 12%</div>
+						<div>태아형 : 15%</div>
+						<div>갈구형 : 17%</div>
+						<div>아멘형 : 37%</div>
+						<div>자유낙하형 : 7%</div>
+						<div>통나무형 : 12%</div>
+					</div>
+		</div>
+
 
 <footer>
   <div id="footer-bottom" class="footer-bottom text-center">
@@ -221,7 +208,6 @@
 
 <script type="text/javascript" src="assets/js/jquery.ajaxchimp.min.js"></script>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="assets/js/jquery.flot.min.js"></script>
 <script>
@@ -229,90 +215,85 @@ $(document).ready(function () {
     // Graph scripts here
 });
 </script>
-
-
 <script>
- var graphData = [{
-        // Visits
-        data: [ [6, 1300], [7, 1600], [8, 1900], [9, 2100], [10, 2500], [11, 2200], [12, 2000], [13, 1950], [14, 1900], [15, 2000] ],
-        color: '#71c73e'
-    }, {
-        // Returning Visits
-        data: [ [6, 500], [7, 600], [8, 550], [9, 600], [10, 800], [11, 900], [12, 800], [13, 850], [14, 830], [15, 1000] ],
-        color: '#77b7c5',
-        points: { radius: 4, fillColor: '#ffffff' }
-    }
-];
+var data1 =
+  {
+		x: [ <%= x %>],
+		y: [ <%= y %>],
+		name: '수면시간',
+		marker: {color: 'rgb(55, 83, 109)'},
+    type: 'bar'
+  }
+;
 
-// Lines
-$.plot($('#graph-lines'), graphData, {
-    series: {
-        points: {
-            show: true,
-            radius: 5
-        },
-        lines: {
-            show: true
-        },
-        shadowSize: 0
+var data2 =
+  {
+		x: [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+		y: [ 8.35,7.64,7.864,7.57,7.348,7.61254,7.23514,7.2564,7.52364,7.5264,7.664,7.164,
+				8.12,8.2351,8.2,7.554,7.16134,7.764,7.464,7.564,],
+		name: 'Z\'s 이용자의 평균 수면 시간',
+		marker: {color: 'rgb(26, 118, 255)'},
+    type: 'bar'
+  }
+;
+
+var data = [data1,data2];
+
+var layout = {
+  xaxis: {tickfont: {
+      size: 14,
+      color: 'rgb(107, 107, 107)'
     },
-    grid: {
-        color: '#646464',
-        borderColor: 'transparent',
-        borderWidth: 20,
-        hoverable: true
-    },
-    xaxis: {
-        tickColor: 'transparent',
-        tickDecimals: 2
-    },
-    yaxis: {
-        tickSize: 1000
-    }
-});
-
-
-var graphData = [{
-        // Visits
-        data: [ [6, 1300], [7, 1600], [8, 1900], [9, 2100], [10, 2500], [11, 2200], [12, 2000], [13, 1950], [14, 1900], [15, 2000] ],
-        color: '#5496e3'
-    }, {
-        // Returning Visits
-        data: [ [6, 500], [7, 600], [8, 550], [9, 600], [10, 800], [11, 900], [12, 800], [13, 850], [14, 830], [15, 1000] ],
-        color: '#7d77c5',
-        points: { radius: 4, fillColor: '#ffffff' }
-    }
-];
-
-// Lines
-$.plot($('#graph-lines-2'), graphData, {
-    series: {
-        points: {
-            show: true,
-            radius: 5
-        },
-        lines: {
-            show: true
-        },
-        shadowSize: 0
-    },
-    grid: {
-        color: '#646464',
-        borderColor: 'transparent',
-        borderWidth: 20,
-        hoverable: true
-    },
-    xaxis: {
-        tickColor: 'transparent',
-        tickDecimals: 2
-    },
-    yaxis: {
-        tickSize: 1000
-    }
-});
+    tickangle: -30
+  },
+	yaxis: {
+	 title: '시간',
+	 titlefont: {
+		 size: 16,
+		 color: 'rgb(107, 107, 107)'
+	 },
+	 tickfont: {
+		 size: 14,
+		 color: 'rgb(107, 107, 107)'
+	 }
+ },
+ legend: {
+	 x: 0,
+	 y: 1.0,
+	 bgcolor: 'rgba(255, 255, 255, 0)',
+	 bordercolor: 'rgba(255, 255, 255, 0)'
+ },
+  barmode: 'group',
+	bargap: 0.15,
+  bargroupgap: 0.1
+};
 
 
 
+Plotly.newPlot('graph-bar', data,layout);
+
+
+var trace1 = [{
+  x: ["22시","23시","00시","01시","02시","03시","04시","05시"],
+  y: [1,0,0,3,1,0,2,1],
+	mode:'lines+markers',
+	name:'hv',
+	line:{shape:'hvh'},
+  type: 'scatter'
+}];
+
+var layout1 = {
+  xaxis: {
+    title: '시간'
+  },
+  yaxis: {
+    title: '뒤척임 횟수'
+  }
+};
+
+
+
+Plotly.newPlot('graph-plot', trace1,layout1);
 
 </script>
 

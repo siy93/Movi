@@ -48,11 +48,15 @@
   		<section id="site-banner" class="site-banner text-center">
   			<div class="container-2">
   				<div class="site-logo">
-  					<a href="/"><img src="images/logo-movi.png"> </a>
+  					<a href="/"><img src="images/logo-zs1.png"> </a>
   				</div><!-- /.site-logo -->
                 <div class="section-login">
                     <div class="btn-login">
-                        <a href="/login">로그인</a>
+											<% if (message) { %>
+												<a href="/logout" class="btn-default">로그아웃</a>
+											<% }else { %>
+												<a href="/login" class="btn-default">로그인</a>
+											<% } %>
                     </div>
                 </div>
   			</div><!-- /.container -->
@@ -69,7 +73,7 @@
   								<i class="fa fa-bars"></i>
   							</button>
                             <div class="menu-logo">
-                              <a href="./"><img src="images/logo-movi-small.png" alt="menu Logo"></a>
+                              <a href="./"><img src="images/logo-zs2-small.png" alt="menu Logo"></a>
                             </div><!-- /.menu-logo -->
                         </div>
                         <nav id="menu" class="menu collapse navbar-collapse">
