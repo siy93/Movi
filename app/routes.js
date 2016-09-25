@@ -75,26 +75,38 @@ module.exports = function(app, passport) {
 
       imagesList = imagesArrays[+currentPage - 1];
 
+      var data = [];
+      var sql = "SELECT * FROM mytest;";
+      server.query(sql,function(err,results){
+        if(err){
+          console.log(err);
+        }else {
+          for(var key in results){
+          data.push(_.values(results[key]));
+        }
+        if(req.user && req.user.username) {
+          res.render('index.ejs', {
+            message: req.user.username ,
+            totalvideo :totalvideo,
+            pageSize : pageSize,
+            images: imagesList,
+            pageCount : pageCount,
+            currentPage : currentPage,
+            data : data
+          }); // load the index.ejs file
+        }else{
+          res.render('index.ejs', {
+            message: null ,
+            totalvideo :totalvideo,
+            pageSize : pageSize,
+            images: imagesList,
+            pageCount : pageCount,
+            currentPage : currentPage,
+            data : data
+          });
+        }
+      }});
 
-      if(req.user && req.user.username) {
-        res.render('index.ejs', {
-          message: req.user.username ,
-          totalvideo :totalvideo,
-          pageSize : pageSize,
-          images: imagesList,
-          pageCount : pageCount,
-          currentPage : currentPage
-        }); // load the index.ejs file
-      }else{
-        res.render('index.ejs', {
-          message: null ,
-          totalvideo :totalvideo,
-          pageSize : pageSize,
-          images: imagesList,
-          pageCount : pageCount,
-          currentPage : currentPage
-        });
-      }
     });
 
     app.get('/graph',function(req,res){
@@ -126,6 +138,8 @@ module.exports = function(app, passport) {
         req.flash('loginMessage', '로그인이 필요한 서비스 입니다.')
         res.render('login.ejs',{message:req.flash('loginMessage')})
       }
+      return res.render('graph.ejs'
+       );
     })
 
     app.get('/calender',function(req,res){

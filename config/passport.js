@@ -3,10 +3,10 @@
 //load all the things we need
 var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
+var passport = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var mysql         = require('mysql');
-var hasher = bkfd2Password();
 var server           = mysql.createConnection({
   host:'localhost',
   user:'root',
@@ -61,7 +61,7 @@ module.exports = function(passport){
         var pwd = password;
         var sql = 'SELECT * FROM users WHERE authId=?';
         server.query(sql,['local:'+em],function(err,results){
-          if(err){
+          if(results[0] === undefined || err){
             console.log('LocalStrategy',user);
             return done(null,false,req.flash('loginMessage', '이메일 또는 비밀번호를 다시 확인하세요.'));
           }
@@ -75,6 +75,7 @@ module.exports = function(passport){
               done(null, false,req.flash('loginMessage', '이메일 또는 비밀번호를 다시 확인하세요.'));
             }
           });
+
         })
       }
     ));

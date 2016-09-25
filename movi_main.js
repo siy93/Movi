@@ -11,7 +11,7 @@ var passport         = require('passport');
 var flash            = require('connect-flash');
 var MySQLStore       = require('express-mysql-session')(session);
 var mysql            = require('mysql');
-var port             = process.env.PORT || 3000;
+var port             = process.env.PORT || 3003;
 var server           = mysql.createConnection({
   host:'localhost',
   user:'root',
