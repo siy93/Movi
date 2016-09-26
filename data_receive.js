@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.post('/', function(req,res){
     var data = req.body.data;
     var pose = req.body.pose;
+    var
     var sql = 'INSERT INTO movi.mytest VALUES (?)';
     server.query(sql,[data],function(err,results){
       console.log(data + "is added on database");
