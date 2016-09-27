@@ -12,7 +12,6 @@ var totalvideo = 0,
     imagesList = [];
 s3.listObjects(
   {Bucket: 'movistorage',
-  Prefix: 'video/'
 }).on('success', function handlePage(response) {
     for(var name in response.data.Contents){
         totalvideo++;
@@ -28,7 +27,7 @@ var server        = mysql.createConnection({
   host:'localhost',
   user:'root',
   password:'movi1234',
-  database:'movi'
+  database:'gsz'
 });
 server.connect();
 
@@ -76,13 +75,12 @@ module.exports = function(app, passport) {
       imagesList = imagesArrays[+currentPage - 1];
 
       var data = [];
-      var sql = "SELECT * FROM mytest;";
+      var sql = "select vertex from skeldata where id = 0 order by id desc;";
       server.query(sql,function(err,results){
         if(err){
           console.log(err);
         }else {
-          for(var key in results){
-          data.push(_.values(results[key]));
+          data.push(_.values(results));
         }
         if(req.user && req.user.username) {
           res.render('index.ejs', {
@@ -114,7 +112,7 @@ module.exports = function(app, passport) {
       var datay = [];
       if (req.isAuthenticated()){
         var code = req.user.code;
-        var sql = "SELECT count,year(date),month(date),day(date),HOUR(TIMEDIFF(end,start)) FROM videoinfo WHERE code=? order by date DESC;";
+        var sql = "SELECT * FROM sleepdata WHER code=? ;";
         server.query(sql,[code],function(err,results){
           if(err){
             console.log(err);
