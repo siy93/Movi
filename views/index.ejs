@@ -119,9 +119,9 @@
 	    <div class="col-md-12">
 	        <div class="today-video">
 						<div class="video-id">
-                <span class="date">지암</span><span>의 잠버릇</span>
+                <span class="date"><%=message%></span><span>님의 잠버릇</span>
             </div>
-						<canvas width = "1100" height = "500" id = "my_Canvas"></canvas>
+						<a href=/graph?page=<%=message%>><canvas width = "1100" height = "500" id = "my_Canvas" ></canvas></a>
 	        </div>
 	    </div>
 			<div class="section-movie">
@@ -131,7 +131,7 @@
 								<div class="col-md-4 box">
 									<div class = inner>
 										<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
-										<img src =http://d1wkhxhl0qw8m2.cloudfront.net/image/<%= 9*(currentPage-1)+1+j+i*3 %>.png>
+										hi
 										<% } else { %>
 										<span></span>
 										<% } %>

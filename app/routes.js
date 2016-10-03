@@ -32,8 +32,16 @@ var server        = mysql.createConnection({
 server.connect();
 
 var find;
-var recentday;
+//var recentday;
 var count;
+var pose = ['태아형','통나무형','갈구형','군인형','자유낙하형','불가사리형']
+var character =['겉으로는 강해보이지만 속마음은 여리고 민감합니다. 처음엔 낯을 가리지만 금방 편안해 합니다.',
+'매사에 느긋하고 사교적이지만 그만큼 허술한 구석이 많고 남에게 쉽게 속아 넘어갑니다.',
+'의심이 많고 냉소적이며 결정에 시간이 많이 걸리지만 일단 결심하면 추진력이 매우 강합니다.',
+'꼼꼼하고 참을성이 많은 성격입니다. 사무처리 능력이 뛰어나며 평소 흐트러진 것을 싫어합니다. 대체로 조용하지만 결단력이 있습니다.',
+'활달한 성격이지만 참을성이 부족해 남의 비난에 지나치게 신경질적인 반응을 가끔 보입니다. 독립적이기보다는 강한 것에 의지하고자 하는 마음이 강합니다. 꾸준한 경쟁보다는 단판승부를 좋아하는 성격이라 가끔 대담한 행동으로 주위를 놀라게합니다.',
+'낙천적이고 대범한 성격인 경우가 많습니다. 사교성이 좋고 다정다감한 성격으로 남의 말을 경청하고 도와주기를 잘해 좋은 친구가 됩니다. 싫증을 잘 내고 끈기가 부족한 것이 단점입니다.']
+
 
 function change(count){
   if(count < 5)return 100;
@@ -59,6 +67,13 @@ module.exports = function(app, passport) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/',function(req,res){
+      var sql3 =  "select count(*) from skeldata;";
+      server.query(sql3,function(err,results){
+        if(err){console.log(err);}
+        else{
+          totalvideo =_.max(_.values(results[0]));
+        }
+      });
       pageCount = parseInt(totalvideo/pageSize) + 1;
 
       if (typeof req.query.page !== 'undefined') {
@@ -75,16 +90,22 @@ module.exports = function(app, passport) {
       imagesList = imagesArrays[+currentPage - 1];
 
       var data = [];
-      var sql = "select vertex from skeldata where id = 0 order by id desc;";
+      var username = [];
+      var sql = "select * from skeldata order by id desc;";
+
       server.query(sql,function(err,results){
         if(err){
           console.log(err);
         }else {
-          data.push(_.values(results));
+          data.push(_.values(_.pick(results[0],'vertex')));
+          for(var key in results){
+            username.push(_.values(_.pick(results[key],'name')));
+          }
         }
+
         if(req.user && req.user.username) {
           res.render('index.ejs', {
-            message: req.user.username ,
+            message: username[0] ,
             totalvideo :totalvideo,
             pageSize : pageSize,
             images: imagesList,
@@ -103,31 +124,65 @@ module.exports = function(app, passport) {
             data : data
           });
         }
-      }});
+      });
 
     });
 
     app.get('/graph',function(req,res){
-      var datax = [];
-      var datay = [];
+      // var datax = [];
+      // var datay = [];
+      var best = [];
       if (req.isAuthenticated()){
-        var code = req.user.code;
-        var sql = "SELECT * FROM sleepdata WHER code=? ;";
-        server.query(sql,[code],function(err,results){
+        var name;
+        if(req.query.page == 'undefined'){
+          name = req.user.username;
+        }
+        else{name = req.query.page; }
+        var sql = "SELECT * FROM gsz.sleepdata WHERE name=? ;";
+        var date = new Date();
+        var pos;
+        server.query(sql,[name],function(err,results){
           if(err){
+
             console.log(err);
           }else {
-            for(var key in results){
+            best.push(_.max(_.pick(results[0],'sp1')));
+            best.push(_.max(_.pick(results[0],'sp2')));
+            best.push(_.max(_.pick(results[0],'sp3')));
+            best.push(_.max(_.pick(results[0],'sp4')));
+            best.push(_.max(_.pick(results[0],'sp5')));
+            best.push(_.max(_.pick(results[0],'sp6')));
+
+            for(var i in best){
+              if(_.max(best) == best[i]){
+                pos = i;
+                console.log(pos);
+                break;
+              }
+            }
+
+
+            /*
             datax.push(_.values(_.pick(results[key],'day(date)')));
             datay.push(_.values(_.pick(results[key],'HOUR(TIMEDIFF(end,start))')));
-          }
-          recentday = _.values(_.pick(results[0],'year(date)'))+"년"+_.values(_.pick(results[0],'month(date)'))+"월"+_.values(_.pick(results[0],'day(date)'))+"일";
-          count = _.values(_.pick(results[0],'count'))
-          return res.render('graph.ejs',{
-            message:req.user.username,
-            x : datax,
-            y : datay,
-            recentday : recentday,
+            }
+            */
+          //recentday = _.values(_.pick(results[0],'year(date)'))+"년"+_.values(_.pick(results[0],'month(date)'))+"월"+_.values(_.pick(results[0],'day(date)'))+"일";\
+          var sleeptime =" "+_.values(_.pick(results[0],'sleeptime'));
+          var sleepArray = sleeptime.split(',');
+          count = _.values(_.pick(results[0],'maxmove'));
+          res.render('graph.ejs',{
+            message:name,
+            sleeptime : sleepArray[0] +"시간"+ sleepArray[1] + "분" + sleepArray[2] + "초",
+            //x : datax,
+            //y : datay,
+            //recentday : recentday,
+            //num : req.user.sleeptime,
+            posenum : pos,
+            pose : pose[pos],
+            char : character[pos],
+            date : "" + date.getFullYear() +"년"+ date.getMonth() +"월"+ date.getDate() + "일",
+            realcount : count,
             count : change(count)
            });
           }
@@ -136,8 +191,6 @@ module.exports = function(app, passport) {
         req.flash('loginMessage', '로그인이 필요한 서비스 입니다.')
         res.render('login.ejs',{message:req.flash('loginMessage')})
       }
-      return res.render('graph.ejs'
-       );
     })
 
     app.get('/calender',function(req,res){
@@ -248,8 +301,8 @@ module.exports = function(app, passport) {
 
     // process the signup form
     app.post('/signup', function(req, res){
-      res.redirect('/')
-      /* 회원가입 제한
+      //res.redirect('/')
+      // 회원가입 제한
       hasher({password:req.body.password}, function(err, pass, salt, hash){
         var user = {
           authId:'local:'+req.body.email,
@@ -274,7 +327,7 @@ module.exports = function(app, passport) {
           }
         });
       });
-      */
+
     });
 
     // =====================================

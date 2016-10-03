@@ -1175,7 +1175,7 @@ footer a {
 
 .today-video {
     text-align: center;
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 .site-banner {
@@ -1213,7 +1213,7 @@ footer a {
     margin-bottom: 20px;
 }
 
-.container .section-movie .box {
+.container .box {
     margin-bottom: 20px;
     text-align: center;
 }
@@ -1222,10 +1222,35 @@ footer a {
     display: block;    
 }
 
-.container .section-movie .box .video-id {
-    text-align: left;
-    margin-left: 40px;
+.container .inner {
+    position: relative;
 }
+
+.container .today-video .video-id {
+    left: 20px;
+}
+
+.container .video-id {
+    position: absolute;
+    float: left;
+    left: 35px;
+    top: 5px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 7px;
+}
+
+.container .video-open {
+    position: absolute;
+    float: right;
+    right: 35px;
+    top: 5px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 5px;
+    border-radius: 8px;
+}
+
 
 .section-pagination {
     text-align: center;
@@ -1275,12 +1300,11 @@ footer a {
 }
 
 .graph-title {
-    margin: 10px;
-    font-size: 1.2em;
+    margin-bottom: -8px;
+    font-size: 1.7em;
     text-indent: 2.5em;
     text-align: center;
     color: #6f7678;
-    margin-top: 30px;
 }
 
 .graphline-title {
@@ -1323,12 +1347,13 @@ footer a {
 }
 
 .snor-rank-section {
-    margin-top: 50px;
+    padding: 25px;
+    border-bottom: 2px solid #cecece;
 }
 
 .snor-rank-section .snor-rank {
-    font-size: 2.5em;
-    color: #6f7678;
+    font-size: 2.2em;
+    color: #4b4e4e;
     text-align: center;
 }
 
@@ -1340,6 +1365,36 @@ footer a {
     font-size: 0.7em;
 }
 
+.cha-section {
+    text-align: center;
+}
+
+.cha-section .img-section {
+    margin: 20px 0;
+}
+
+.cha-section .cha {
+    font-size: 2em;
+    color: #434343;
+}
+
+.cha-section p {
+    font-size: 1.6em;
+}
+
+.snor-audio .audio-title {
+    padding-bottom: 20px;
+}
+
+.snor-audio .audio-list {
+    margin: 30px;
+}
+
+.snor-audio .audio-date {
+    line-height: 60px;
+    font-size: 1.3em;
+    text-align: center;
+}
 
 /*calender.css*/
 
