@@ -55,7 +55,6 @@
 	                <div class="section-login">
 											<% if (message) { %>
 												<div>
-										    <%= message %> 님  안녕히 주무셨나요?
 											</div>
 												<a href="/logout" class="btn-default">로그아웃</a>
 									    <% }else { %>
@@ -121,7 +120,7 @@
 						<div class="video-id">
                 <span class="date"><%=message%></span><span>님의 잠버릇</span>
             </div>
-						<a href=/graph?page=<%=message%>><canvas width = "1100" height = "500" id = "my_Canvas" ></canvas></a>
+						<a href=/graph?page=<%=message%>><canvas width = "700" height = "500" id = "my_Canvas" ></canvas></a>
 	        </div>
 	    </div>
 			<div class="section-movie">
@@ -131,7 +130,10 @@
 								<div class="col-md-4 box">
 									<div class = inner>
 										<%if (totalvideo > 9*(currentPage-1)+1+j+i*3) {%>
-										hi
+											<%= other[9*(currentPage-1)+1+j+i*3] %> 님의 잠버릇
+											<a href=/graph?page=<%=other[9*(currentPage-1)+1+j+i*3] %>>
+													<img src = "/images/sleeping-0<%=Math.floor((Math.random() * 9) + 1)%>.png">
+											</a>
 										<% } else { %>
 										<span></span>
 										<% } %>
@@ -169,7 +171,6 @@
 			</ul>
 			<% } %>
 			</div>
-
 	</div>
 
 
@@ -247,9 +248,6 @@
 		var gl = canvas.getContext('experimental-webgl');
 		var scene = this.scene;
 
-
-		/*======= Defining and storing the geometry ======*/
-
 		var vertices = [<%= data %>]
 
 		function render() {
@@ -265,9 +263,9 @@
 				 }
 
 				 function renderLoop() {
-					  if(i >= vertices.length){i=0}
+						if(i >= vertices.length){i=0}
 						render();
-						window.setTimeout(renderLoop, 7000 / 60);
+						window.setTimeout(renderLoop, 2000 / 60);
 				 }
 
 		// Create an empty buffer object
@@ -315,8 +313,9 @@
 		gl.viewport(0,0,canvas.width,canvas.height);
 		renderLoop();
 
-		// POINTS, LINE_STRIP, LINE_LOOP, LINES,
-		// TRIANGLE_STRIP,TRIANGLE_FAN, TRIANGLES
+
+
+
 
 </script>
 

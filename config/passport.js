@@ -8,7 +8,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var mysql         = require('mysql');
 var server           = mysql.createConnection({
-  host:'localhost',
+  host:'127.0.0.1',
   user:'root',
   password:'movi1234',
   database:'movi'
@@ -33,10 +33,10 @@ module.exports = function(passport){
    //used to deserialize the user
    passport.deserializeUser(function(id, done) {
      console.log('deserializeUser', id);
-     var sql = 'SELECT * FROM users WHERE authId=?';
+     var sql = 'SELECT * FROM movi.users WHERE authId=?';
      server.query(sql,[id],function(err,results){
        if(err){
-         console.log(err);
+         //console.log(err);
          done('There is no user');
        }else {
          return done(null,results[0]);
@@ -59,7 +59,7 @@ module.exports = function(passport){
       function( req, email, password, done){
         var em = email;
         var pwd = password;
-        var sql = 'SELECT * FROM users WHERE authId=?';
+        var sql = 'SELECT * FROM movi.users WHERE authId=?';
         server.query(sql,['local:'+em],function(err,results){
           if(results[0] === undefined || err){
             console.log('LocalStrategy',user);
@@ -72,6 +72,7 @@ module.exports = function(passport){
               console.log('LocalStrategy', user);
               return done(null, user);
             } else {
+              console.log("good");
               done(null, false,req.flash('loginMessage', '이메일 또는 비밀번호를 다시 확인하세요.'));
             }
           });
@@ -89,7 +90,7 @@ module.exports = function(passport){
     function(accessToken,refreshToken,profile,done){
       console.log(profile);
       var authId = 'facebook:'+profile.id;
-      var sql = 'SELECT * FROM users WHERE authId=?';
+      var sql = 'SELECT * FROM movi.users WHERE authId=?';
       server.query(sql,[authId],function(err,results){
         if(results.length>0){
           done(null,results[0]);

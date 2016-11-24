@@ -22,7 +22,7 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "pbkdf2-password": "^1.1.0",
+    "pbkdf2-password": "^1.2.1",
     "plotly": "^1.0.6",
     "session-file-store": "^0.2.0",
     "sha256": "^0.2.0",

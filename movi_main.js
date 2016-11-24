@@ -13,7 +13,7 @@ var MySQLStore       = require('express-mysql-session')(session);
 var mysql            = require('mysql');
 var port             = process.env.PORT || 3003;
 var server           = mysql.createConnection({
-  host:'localhost',
+  host:'127.0.0.1',
   user:'root',
   password:'movi1234',
   database:'movi'
@@ -33,7 +33,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store:new MySQLStore({
-    host:'localhost',
+    host:'127.0.0.1',
     port:3306,
     user:'root',
     password:'movi1234',
@@ -47,11 +47,8 @@ app.use(passport.session());
 app.use(flash());
 app.use(express.static('public'));
 
-
-
 //required for passport
 require('./app/routes.js')(app,passport);
-
 require('./config/passport.js')(passport); // pass passport for configuration
 
 
